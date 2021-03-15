@@ -1,0 +1,26 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  - name: ubuntu
+    box: ubuntu/bionic64
+    # instance_raw_config_args:
+    #   - "vm.network 'forwarded_port', guest: 80, host: 8088"
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      all:
+        elastic_distr_type: local
+        elastic_version: "7.11.1"
+        elastic_url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.11.1-linux-x86_64.tar.gz"
+        elastic_distr_name: elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz
+        elastic_folder: "{{ elastic_distr_name.split('-')[:2] | join('-')  }}"
+        elastic_home: "/opt/elastic/{{ elastic_folder }}"
+verifier:
+  name: ansible
+

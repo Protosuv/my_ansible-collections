@@ -1,0 +1,6 @@
+---
+# defaults file for test_module-role
+
+name: 'testfile.txt'
+path: /tmp/testdir/
+content: 'File content for my test module'
